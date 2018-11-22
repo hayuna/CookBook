@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Cassandra';
+    src: url('./Cassandra\ Personal\ Use.ttf')  format('truetype');
+}
+
+h2.header {
+    text-align: center;
+    font-family: 'Cassandra', Fallback, sans-serif;
+    color: white;
+}
