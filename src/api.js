@@ -1,0 +1,1 @@
+export const API_GET_DISHES = 'https://cookbook-koszalin.herokuapp.com/dishes'
