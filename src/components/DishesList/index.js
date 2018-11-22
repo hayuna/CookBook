@@ -4,21 +4,29 @@ import axios from 'axios'
 class DishesList extends Component {
     state = {
         dishes: [],
+        loading: true,
     } 
  
     componentDidMount(){
         axios
             .get('https://cookbook-koszalin.herokuapp.com/dishes')
             .then(({ data }) => {
-                this.setState({ dishes: data })
+                this.setState({ 
+                    dishes: data, 
+                    loading: false 
+                })
             })
             .catch(error => {
                 console.log('error')
+                this.setState({ loading: false })
             })
     }
     
     render(){
-        const { dishes } = this.state
+        const { loading, dishes } = this.state
+        if(loading) return (
+            <span>loading...</span>
+        )
         return (
             <div>
                 <div>
