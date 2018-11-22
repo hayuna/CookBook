@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import { API_GET_DISHES } from '../../api';
+import LoadingSpinner from '../utils/Loading';
 
 class DishesList extends Component {
     state = {
@@ -30,9 +31,8 @@ class DishesList extends Component {
     
     render(){
         const { loading, error, dishes } = this.state
-        if(loading) return (
-            <span>loading...</span>
-        )
+        if(loading) return <LoadingSpinner />
+        if(error) return <span>error! {error.message}</span>
         if(error) return (
             <span>error! {error.message}</span>
         )
