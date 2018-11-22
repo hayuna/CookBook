@@ -5,12 +5,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { API_GET_DISHES } from '../../api';
 import LoadingSpinner from '../utils/Loading';
+import SearchBar from '../utils/SearchBar'
 
 class DishesList extends Component {
     state = {
         dishes: [],
         loading: true,
         error: null,
+        disableSearching: false,
     } 
  
     componentDidMount(){
@@ -25,13 +27,18 @@ class DishesList extends Component {
             .catch(error => {
                 this.setState({ 
                     loading: false,
-                    error: error 
+                    error: error,
                 })
                 toast.error(this.state.error.message, {
                     onOpen: () => this.setState({ disableSearching: true }),
                     onClose: () => this.setState({ disableSearching: false })
                 })
             })
+    }
+
+    handleChangeValue = e => {
+        //TODO implement searching
+        console.log(e)
     }
     
     render(){
@@ -40,6 +47,7 @@ class DishesList extends Component {
         if(error) return <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
         return (
             <div>
+                <SearchBar onChangeValue={this.handleChangeValue} />
                 <div>
                     {dishes.map(i => <span key={i.id}>{i.name}</span>)}                
                 </div>
