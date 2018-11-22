@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { API_GET_DISHES } from '../../api';
 import LoadingSpinner from '../utils/Loading';
 import SearchBar from '../utils/SearchBar'
+import DishElement from '../DishElement'
 
 class DishesList extends Component {
     state = {
@@ -49,7 +50,7 @@ class DishesList extends Component {
             <div>
                 <SearchBar onChangeValue={this.handleChangeValue} />
                 <div>
-                    {dishes.map(i => <span key={i.id}>{i.name}</span>)}                
+                    {dishes.map(i => <DishElement key={i.id} data={i} />)}                
                 </div>
             </div>
         )
