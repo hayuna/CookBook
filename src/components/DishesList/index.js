@@ -7,6 +7,7 @@ class DishesList extends Component {
     state = {
         dishes: [],
         loading: true,
+        error: null,
     } 
  
     componentDidMount(){
@@ -20,14 +21,20 @@ class DishesList extends Component {
             })
             .catch(error => {
                 console.log('error')
-                this.setState({ loading: false })
+                this.setState({ 
+                    loading: false,
+                    error: error 
+                })
             })
     }
     
     render(){
-        const { loading, dishes } = this.state
+        const { loading, error, dishes } = this.state
         if(loading) return (
             <span>loading...</span>
+        )
+        if(error) return (
+            <span>error! {error.message}</span>
         )
         return (
             <div>
