@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import { API_GET_DISHES } from '../../api';
+
 class DishesList extends Component {
     state = {
         dishes: [],
@@ -9,7 +11,7 @@ class DishesList extends Component {
  
     componentDidMount(){
         axios
-            .get('https://cookbook-koszalin.herokuapp.com/dishes')
+            .get(API_GET_DISHES)
             .then(({ data }) => {
                 this.setState({ 
                     dishes: data, 
