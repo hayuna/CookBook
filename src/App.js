@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import DishesList from './components/DishesList'
+import NotFound from './components/utils/NotFound'
 import { Container } from './style'
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={DishesList} />
             <Route exact path='/dishes' component={DishesList} />
+            <Route component={NotFound} />
           </Switch>
         </Container>
       </Router>
