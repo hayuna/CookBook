@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import DishesList from './components/DishesList'
 import DishDetails from './components/DishDetails'
 import NotFound from './components/utils/NotFound'
-import { Header } from './components/utils/Header'
 import { Container } from './style'
 
 class App extends Component {
@@ -12,7 +11,6 @@ class App extends Component {
     return (
       <Router>
         <Container>
-          <Header />
           <Switch>
             <Route exact path='/' component={DishesList} />
             <Route exact path='/dishes' component={DishesList} />
