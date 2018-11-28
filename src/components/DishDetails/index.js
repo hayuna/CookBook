@@ -8,6 +8,7 @@ import DishImage from './DishImage'
 import DishName from './DishName'
 import DishDescription from './DishDescription'
 import LoadingSpinner from '../utils/Loading';
+import Header from '../utils/Header'
 
 class DishDetails extends Component {
     state = {
@@ -48,6 +49,8 @@ class DishDetails extends Component {
         if(loading) return <LoadingSpinner />  
         return (
             <div>
+
+                <Header redirect />
                 <DishImage name={name} location={picture} />
                 <DishName name={name} />
                 {ingredients.map(ingredient => 

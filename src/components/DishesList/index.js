@@ -7,6 +7,7 @@ import { API_GET_DISHES } from '../../api';
 import LoadingSpinner from '../utils/Loading';
 import SearchBar from '../utils/SearchBar'
 import DishElement from '../DishElement'
+import Header from '../utils/Header';
 
 class DishesList extends Component {
     state = {
@@ -48,6 +49,7 @@ class DishesList extends Component {
         if(error) return <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
         return (
             <div>
+                <Header />
                 <SearchBar onChangeValue={this.handleChangeValue} />
                 <div>
                     {dishes.map(i => <DishElement key={i.id} data={i} />)}                
