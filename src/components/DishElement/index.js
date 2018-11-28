@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import Thumb from './style'
+import { Thumb, Name, Container } from './style'
 
 class DishElement extends Component {
     render(){
         const { id, name, picture } = this.props.data
 
         return (
-            <div>
+            <Container>
                 <Link to={`/dishes/${id}`}>
                     <Thumb alt={name} src={picture} />
-                    <span>{name}</span>
+                    <Name>{name}</Name>
                 </Link>    
-            </div>
+            </Container>
         )
     }
 }
