@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const FloatingMenu = styled.div`
-    position: absolute;
 	right: 8px;
 	bottom: 8px;
 	height: 42px;
