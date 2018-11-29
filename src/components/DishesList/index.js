@@ -41,9 +41,27 @@ class DishesList extends Component {
             })
     }
 
-    handleChangeValue = e => {
-        //TODO implement searching
-        console.log(e)
+    handleChangeValue = term => {
+        axios
+        .get(API_GET_DISHES, {
+            params: { term }
+        })
+        .then(({ data }) => {
+            this.setState({ 
+                dishes: data, 
+                loading: false 
+            })
+        })
+        .catch(error => {
+            this.setState({ 
+                loading: false,
+                error: error,
+            })
+            toast.error(this.state.error.message, {
+                onOpen: () => this.setState({ disableSearching: true }),
+                onClose: () => this.setState({ disableSearching: false })
+            })
+        })
     }
 
     handleClickFloatingButton = () => {
