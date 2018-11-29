@@ -9,6 +9,7 @@ import SearchBar from '../utils/SearchBar'
 import DishElement from '../DishElement'
 import Header from '../utils/Header';
 import FloatingButton from '../utils/FloatingButton'
+import AddNewDish from '../AddNewDish';
 
 class DishesList extends Component {
     state = {
@@ -16,6 +17,7 @@ class DishesList extends Component {
         loading: true,
         error: null,
         disableSearching: false,
+        addingNewDish: false
     } 
  
     componentDidMount(){
@@ -45,14 +47,14 @@ class DishesList extends Component {
     }
 
     handleClickFloatingButton = () => {
-        //TODO redirect to Adding new dish
-        console.log('handleClickFloatingButton')
+        this.setState({addingNewDish: true})
     }
     
     render(){
-        const { loading, error, dishes } = this.state
+        const { loading, error, dishes, addingNewDish } = this.state
         if(loading) return <LoadingSpinner />
         if(error) return <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
+        if(addingNewDish) return <AddNewDish />
         return (
             <div>
                 <Header />
