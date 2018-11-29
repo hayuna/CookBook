@@ -8,6 +8,7 @@ import LoadingSpinner from '../utils/Loading';
 import SearchBar from '../utils/SearchBar'
 import DishElement from '../DishElement'
 import Header from '../utils/Header';
+import FloatingButton from '../utils/FloatingButton'
 
 class DishesList extends Component {
     state = {
@@ -42,6 +43,11 @@ class DishesList extends Component {
         //TODO implement searching
         console.log(e)
     }
+
+    handleClickFloatingButton = () => {
+        //TODO redirect to Adding new dish
+        console.log('handleClickFloatingButton')
+    }
     
     render(){
         const { loading, error, dishes } = this.state
@@ -54,6 +60,7 @@ class DishesList extends Component {
                 <div>
                     {dishes.map(i => <DishElement key={i.id} data={i} />)}                
                 </div>
+                <FloatingButton onClick={this.handleClickFloatingButton}/>
             </div>
         )
     }
