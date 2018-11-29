@@ -5,24 +5,23 @@ import { Search, SearchInput } from './style'
 
 class SearchBar extends Component {
     state = {
-        term: '',
         typing: false,
         typingTimeout: 0,
         timeout: 300
     }
 
     handleChange = event => {
-        const { timeout, term, typingTimeout } = this.state
+        const { timeout, typingTimeout } = this.state
         const { onChangeValue } = this.props 
 
         if (typingTimeout) {
             clearTimeout(typingTimeout);
         }
+        const text = event.target.value
         this.setState({
-            term: event.target.value,
             typing: false,
             typingTimeout: setTimeout(() => {
-                onChangeValue(encodeURI(term))
+                onChangeValue(text)
             }, timeout)
         });
     }
