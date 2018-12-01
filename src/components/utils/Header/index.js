@@ -21,7 +21,7 @@ class Header extends Component{
                     ? <BackButton onClick={ this.redirectToHome }/>
                     : null
                 }
-                {this.state.redirect && <Redirect to='/' />}
+                {this.state.redirect && <Redirect to='/dishes' />}
             </Container>
         )
     }
