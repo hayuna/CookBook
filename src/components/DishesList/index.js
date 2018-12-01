@@ -9,7 +9,8 @@ import SearchBar from '../utils/SearchBar'
 import DishElement from '../DishElement'
 import Header from '../utils/Header';
 import FloatingButton from '../utils/FloatingButton'
-import AddNewDish from '../AddNewDish';
+
+import { Redirect } from 'react-router-dom'
 
 class DishesList extends Component {
     state = {
@@ -72,7 +73,7 @@ class DishesList extends Component {
         const { loading, error, dishes, addingNewDish } = this.state
         if(loading) return <LoadingSpinner />
         if(error) return <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
-        if(addingNewDish) return <AddNewDish />
+        if(addingNewDish) return <Redirect to='/new' />
         return (
             <div>
                 <Header />
