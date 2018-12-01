@@ -5,6 +5,7 @@ import DishesList from './components/DishesList'
 import DishDetails from './components/DishDetails'
 import NotFound from './components/utils/NotFound'
 import { Container } from './style'
+import AddNewDish from './components/AddNewDish';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <Route exact path='/' component={DishesList} />
             <Route exact path='/dishes' component={DishesList} />
             <Route exact path='/dishes/:dishId' component={DishDetails} />
+            <Route exact path='/new' component={AddNewDish} />
             <Route component={NotFound} />
           </Switch>
         </Container>
