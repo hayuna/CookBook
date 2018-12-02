@@ -11,6 +11,15 @@ import Header from '../utils/Header';
 import FloatingButton from '../utils/FloatingButton'
 
 import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
+
+const ScrollableContainer = styled.div`
+    overflow-y: scroll;
+    height: 500px;
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+`
 
 class DishesList extends Component {
     state = {
@@ -78,9 +87,9 @@ class DishesList extends Component {
             <div>
                 <Header />
                 <SearchBar onChangeValue={this.handleChangeValue} />
-                <div>
+                <ScrollableContainer>
                     {dishes.map(i => <DishElement key={i.id} data={i} />)}                
-                </div>
+                </ScrollableContainer>
                 <FloatingButton onClick={this.handleClickFloatingButton}/>
             </div>
         )
