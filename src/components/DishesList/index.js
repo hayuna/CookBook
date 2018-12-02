@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { API_GET_DISHES } from '../../api';
-import LoadingSpinner from '../utils/Loading';
+import LoadingPizza from '../utils/LoadingPizza'
 import SearchBar from '../utils/SearchBar'
 import DishElement from '../DishElement'
 import Header from '../utils/Header';
@@ -71,7 +71,7 @@ class DishesList extends Component {
     
     render(){
         const { loading, error, dishes, addingNewDish } = this.state
-        if(loading) return <LoadingSpinner />
+        if(loading) return <LoadingPizza />
         if(error) return <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
         if(addingNewDish) return <Redirect to='/new' />
         return (

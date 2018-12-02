@@ -7,7 +7,7 @@ import IngredientBadge from './IngredientBadge'
 import DishImage from './DishImage'
 import DishName from './DishName'
 import DishDescription from './DishDescription'
-import LoadingSpinner from '../utils/Loading';
+import LoadingPizza from '../utils/LoadingPizza';
 import Header from '../utils/Header'
 
 class DishDetails extends Component {
@@ -46,7 +46,7 @@ class DishDetails extends Component {
         const { error, loading } = this.state
 
         if(error) return <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
-        if(loading) return <LoadingSpinner />  
+        if(loading) return <LoadingPizza />  
         return (
             <div>
 
