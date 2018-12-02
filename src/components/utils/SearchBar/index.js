@@ -4,6 +4,12 @@ import { FaSearch } from 'react-icons/fa';
 import { Search, SearchInput } from './style'
 import { SEARCHBAR_PLACEHOLDER } from '../../../texts';
 
+const IconStyle = {
+    position: 'relative', 
+    top: 30, 
+    left: 10
+}
+
 class SearchBar extends Component {
     state = {
         typing: false,
@@ -30,7 +36,7 @@ class SearchBar extends Component {
     render() {
         return (
             <Search>
-                <FaSearch style={{position: 'relative', top: 30, left: 10}} />
+                <FaSearch style={IconStyle} />
                 <SearchInput 
                     placeholder={SEARCHBAR_PLACEHOLDER} 
                     onChange={this.handleChange}
