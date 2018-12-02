@@ -8,6 +8,7 @@ import IngredientsSelect from './IngredientsSelect';
 import FloatingButton from '../utils/FloatingButton';
 import axios from 'axios';
 import { API_GET_DISHES } from '../../api';
+import { UPLOAD_DISH_PHOTO, TYPE_DISH_NAME, TYPE_DISH_DESCRIPTION, CHOOSE_SOME_INGREDIENTS } from '../../texts'
 
 class AddNewDish extends Component{
 
@@ -58,10 +59,10 @@ class AddNewDish extends Component{
     validate = () => {
         const { image, name, description, ingredients } = this.state
         let listOfErrors = []
-        if(image.length === 0) listOfErrors.push('Wrzuć zdjęcie dania')
-        if(name.length === 0) listOfErrors.push('Podaj nazwę dania')
-        if(description.length === 0) listOfErrors.push('Podaj przepis')
-        if(ingredients.length === 0) listOfErrors.push('Podaj składniki')
+        if(image.length === 0) listOfErrors.push(UPLOAD_DISH_PHOTO)
+        if(name.length === 0) listOfErrors.push(TYPE_DISH_NAME)
+        if(description.length === 0) listOfErrors.push(TYPE_DISH_DESCRIPTION)
+        if(ingredients.length === 0) listOfErrors.push(CHOOSE_SOME_INGREDIENTS)
         return listOfErrors
     }
 

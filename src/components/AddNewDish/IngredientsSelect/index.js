@@ -9,6 +9,7 @@ import Select from 'react-select'
 import axios from 'axios'
 import { API_GET_INGREDIENTS } from '../../../api';
 import { Container, FullContainer, Label } from './style'
+import { ADD_NEW_INGREDIENT, NAME, CHOOSE_SOME_INGREDIENTS } from '../../../texts';
 
 const ButtonStyle = {
     padding: '5px',
@@ -73,15 +74,15 @@ class IngredientsSelect extends Component{
         const { selectedOption, options } = this.state;
         return (
             <FullContainer>
-                <Label>Choose some ingredients</Label>
+                <Label>{CHOOSE_SOME_INGREDIENTS}</Label>
                 <Container>
                     <Select value={selectedOption} onChange={this.handleChange} options={options} isMulti/>
                     <div>
                         <Button style={ButtonStyle} onClick={this.handleClickOpen}>+</Button>
-                        <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                            <DialogTitle id="form-dialog-title">Add New Ingredient</DialogTitle>
+                        <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                            <DialogTitle id="form-dialog-title">{ADD_NEW_INGREDIENT}</DialogTitle>
                             <DialogContent>
-                                <TextField onChange={this.changeIngredient} autoFocus margin="dense" id="name" label="Name" type="text" fullWidth/>
+                                <TextField onChange={this.changeIngredient} autoFocus margin="dense" id="name" label={NAME} type="text" fullWidth/>
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={this.handleClose} color="primary">Cancel</Button>

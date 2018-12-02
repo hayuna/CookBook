@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { ADDRESS_NOT_FOUND, NOT_FOUND_REDIRECTING, SECONDS } from '../../../texts';
 
 class NotFound extends Component {
     state = {
@@ -22,8 +23,8 @@ class NotFound extends Component {
         const { counter } = this.state
         return (
             <div>
-                <p>Nie znaleziono adresu <code>{ location.pathname }</code></p>
-                <p>Przekierowanie do strony głównej nastąpi za { counter } sekund.</p>
+                <p>{ADDRESS_NOT_FOUND} <code>{ location.pathname }</code></p>
+                <p>{NOT_FOUND_REDIRECTING} { counter } {SECONDS}</p>
                 {counter === 0 && <Redirect to='/' />}
             </div>
         )

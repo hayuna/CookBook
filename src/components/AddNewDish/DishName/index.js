@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './style.css'
 import { Container, Label, Input } from './style.js'
+import { DISH_NAME, DISH_NAME_PLACEHOLDER } from '../../../texts'
 
 class DishName extends Component{
     
@@ -12,9 +13,9 @@ class DishName extends Component{
         return(
             <Container>
                 <Label className="field a-field a-field_a1 page__field">
-                    <Input onChange={this.handleChange} className="field__input a-field__input" placeholder="e.g. Cake" required />
+                    <Input onChange={this.handleChange} className="field__input a-field__input" placeholder={DISH_NAME_PLACEHOLDER} required />
                     <span className="a-field__label-wrap">
-                        <span className="a-field__label">Dish name</span>
+                        <span className="a-field__label">{DISH_NAME}</span>
                     </span>
                 </Label>
             </Container>

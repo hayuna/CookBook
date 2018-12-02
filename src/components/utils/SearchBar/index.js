@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { FaSearch } from 'react-icons/fa';
 
 import { Search, SearchInput } from './style'
+import { SEARCHBAR_PLACEHOLDER } from '../../../texts';
 
 class SearchBar extends Component {
     state = {
@@ -31,7 +32,7 @@ class SearchBar extends Component {
             <Search>
                 <FaSearch style={{position: 'relative', top: 30, left: 10}} />
                 <SearchInput 
-                    placeholder={'Z jakich składników chcesz zrobić potrawę?'} 
+                    placeholder={SEARCHBAR_PLACEHOLDER} 
                     onChange={this.handleChange}
                 />
             </Search>
