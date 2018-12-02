@@ -71,7 +71,7 @@ class IngredientsSelect extends Component{
     }
     
     render(){
-        const { selectedOption, options } = this.state;
+        const { selectedOption, options, open } = this.state;
         return (
             <FullContainer>
                 <Label>{CHOOSE_SOME_INGREDIENTS}</Label>
