@@ -1,2 +1,3 @@
-export const API_GET_DISHES = 'https://cookbook-koszalin.herokuapp.com/dishes'
-export const API_GET_INGREDIENTS = 'https://cookbook-koszalin.herokuapp.com/ingredients'
+const DOMAIN = 'https://cookbook-koszalin.herokuapp.com/'
+export const API_GET_DISHES = `${DOMAIN}dishes`
+export const API_GET_INGREDIENTS = `${DOMAIN}ingredients`
