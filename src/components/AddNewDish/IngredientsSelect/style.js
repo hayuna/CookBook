@@ -6,11 +6,5 @@ export const Container = styled.div`
         width: 100%
     }
 `
-
-export const FullContainer = styled.div`
-    margin-top:10px;
-`
-
-export const Label = styled.label`
-    color: white;
-`
+export const FullContainer = styled.div`margin-top:10px;`
+export const Label = styled.label`color: white;`

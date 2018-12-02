@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, TextArea, Label } from './style'
+import { Container, Label, TextArea } from './style'
 
 class DishDescription extends Component{
 

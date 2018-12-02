@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { FaSearch } from 'react-icons/fa';
-
 import { Search, SearchInput } from './style'
 import { SEARCHBAR_PLACEHOLDER } from '../../../texts';
 
@@ -21,9 +20,7 @@ class SearchBar extends Component {
         const { timeout, typingTimeout } = this.state
         const { onChangeValue } = this.props 
 
-        if (typingTimeout) {
-            clearTimeout(typingTimeout);
-        }
+        if (typingTimeout) clearTimeout(typingTimeout);
         const text = event.target.value
         this.setState({
             typing: false,
@@ -37,10 +34,7 @@ class SearchBar extends Component {
         return (
             <Search>
                 <FaSearch style={IconStyle} />
-                <SearchInput 
-                    placeholder={SEARCHBAR_PLACEHOLDER} 
-                    onChange={this.handleChange}
-                />
+                <SearchInput placeholder={SEARCHBAR_PLACEHOLDER} onChange={this.handleChange} />
             </Search>
         );
     }

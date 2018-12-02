@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
-
 import { API_GET_DISHES } from '../../api'
 import IngredientBadge from './IngredientBadge'
 import DishImage from './DishImage'
@@ -19,7 +18,6 @@ class DishDetails extends Component {
             ingredients: [], 
             recipe: ''
         },
-        error: false
     }
 
     componentDidMount(){
@@ -33,24 +31,19 @@ class DishDetails extends Component {
                 })
             })
             .catch(error => {
-                this.setState({ 
-                    error, 
-                    loading: false
-                })
-                toast.error(this.state.error.message)
+                this.setState({ loading: false })
+                toast.error(error.message)
             })
     }
 
     render(){
         const { name, picture, ingredients, recipe } = this.state.dish
-        const { error, loading } = this.state
-
-        if(error) return <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
-        if(loading) return <LoadingPizza />  
+        const { loading } = this.state
         return (
             <div>
-
+                <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
                 <Header redirect />
+                {loading && <LoadingPizza />}
                 <DishImage name={name} location={picture} />
                 <DishName name={name} />
                 {ingredients.map(ingredient => 

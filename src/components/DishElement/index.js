@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
 import { Thumb, Name, Container } from './style'
 
 class DishElement extends Component {

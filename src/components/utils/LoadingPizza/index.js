@@ -1,4 +1,5 @@
 import React from 'react'
+import { Loading } from './style'
 
 class LoadingPizza extends React.Component{
     componentDidMount(){
@@ -107,7 +108,9 @@ class LoadingPizza extends React.Component{
 
     render(){
         return (
-            <canvas ref="canvas"/>
+            <Loading>
+                <canvas ref="canvas"/>
+            </Loading>
         )
     }
 }

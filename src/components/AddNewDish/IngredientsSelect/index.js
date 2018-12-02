@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -6,7 +9,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Select from 'react-select'
-import axios from 'axios'
 import { API_GET_INGREDIENTS } from '../../../api';
 import { Container, FullContainer, Label } from './style'
 import { ADD_NEW_INGREDIENT, NAME, CHOOSE_SOME_INGREDIENTS } from '../../../texts';
@@ -25,18 +27,9 @@ class IngredientsSelect extends Component{
         name: ''
     }
 
-    handleClickOpen = () => {
-        this.setState({ open: true });
-    }
-
-    handleClose = () => {
-        this.setState({ open: false });
-    }
-
-    changeIngredient = e => {
-        this.setState({ name: e.target.value })
-    }
-
+    handleClickOpen = () => this.setState({ open: true })
+    handleClose = () => this.setState({ open: false })
+    changeIngredient = e => this.setState({ name: e.target.value })
     addNewIngredient = () => {
         this.setState({ open: false });
         const { name, options, selectedOption } = this.state
@@ -75,6 +68,7 @@ class IngredientsSelect extends Component{
         const { selectedOption, options, open } = this.state;
         return (
             <FullContainer>
+                <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
                 <Label>{CHOOSE_SOME_INGREDIENTS}</Label>
                 <Container>
                     <Select value={selectedOption} onChange={this.handleChange} options={options} isMulti/>
