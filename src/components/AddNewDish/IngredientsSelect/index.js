@@ -39,13 +39,14 @@ class IngredientsSelect extends Component{
 
     addNewIngredient = () => {
         this.setState({ open: false });
+        const { name, options, selectedOption } = this.state
         axios
-        .post(API_GET_INGREDIENTS, {name: this.state.name})
+        .post(API_GET_INGREDIENTS, {name})
         .then(({ data }) => {
             data.value = data.id; 
             data.label = data.name
-            this.setState({ options: [...this.state.options, data] })
-            this.setState({ selectedOption: [ ...this.state.selectedOption, data ] })
+            this.setState({ options: options ? [...options, data] : data })
+            this.setState({ selectedOption: selectedOption ? [ ...selectedOption, data ] : data })
         })
         .catch(error => {
             console.log(error)
