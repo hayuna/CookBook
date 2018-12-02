@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 import './style.css';
 import { BackButton, Container } from './style'
+import { APP_NAME } from '../../../texts';
 
 class Header extends Component{
     state = {
@@ -16,7 +17,7 @@ class Header extends Component{
     render(){
         return(
             <Container>
-                <h2 className='header'>{ 'CookBook' }</h2>
+                <h2 className='header'>{APP_NAME}</h2>
                 {this.props.redirect 
                     ? <BackButton onClick={ this.redirectToHome }/>
                     : null
