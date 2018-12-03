@@ -42,7 +42,9 @@ class IngredientsSelect extends Component{
             this.setState({ selectedOption: selectedOption ? [ ...selectedOption, data ] : data })
         })
         .catch(error => {
-            console.log(error)
+            const usedIngredient = options.filter(option => option.name === name)
+            this.setState({ options: options ? [...options, usedIngredient] : usedIngredient })
+            this.setState({ selectedOption: selectedOption ? [ ...selectedOption, usedIngredient ] : usedIngredient })
         })
     }
     
@@ -54,7 +56,7 @@ class IngredientsSelect extends Component{
             this.setState({ options })
         })
         .catch(error => {
-            console.log(error)
+            toast.error(error.message)
         })
     }
 
