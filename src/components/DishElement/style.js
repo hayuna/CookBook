@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Thumb = styled.img`
     width:100px;
-    height:75px;
+    height:100px;
     border-radius: 45px;
 ` 
 
