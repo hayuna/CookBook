@@ -42,7 +42,7 @@ class UploadImage extends Component {
       <label 
         className={`uploader ${loaded ? 'loaded' : ''}`}
         onDrop={this.onDrop}
-        style={{outlineColor: active ? activeColor : baseColor}}>
+        style={{outlineColor: active ? activeColor : baseColor, marginLeft: '8px'}}>
         
         <img alt='temp' src={imageSrc} className={loaded ? 'loaded' : ''}/>
         <i className="icon icon-upload" style={{ color: iconColor }}></i>
