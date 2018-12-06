@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Label, TextArea } from './style'
+import { DISH_DESCRIPTION } from '../../../texts'
 
 class DishDescription extends Component{
 
@@ -15,7 +16,7 @@ class DishDescription extends Component{
     render(){
         return(
             <Container>
-                <Label>Description
+                <Label>{DISH_DESCRIPTION}
                     <div>
                         <TextArea value={this.state.value} onChange={this.handleChange} />
                     </div>

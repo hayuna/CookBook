@@ -10,7 +10,7 @@ import UploadImage from './UploadImage';
 import IngredientsSelect from './IngredientsSelect';
 import FloatingButton from '../utils/FloatingButton';
 import { API_GET_DISHES } from '../../api';
-import { UPLOAD_DISH_PHOTO, TYPE_DISH_NAME, TYPE_DISH_DESCRIPTION, CHOOSE_SOME_INGREDIENTS, ADDED_NEW_DISH } from '../../texts'
+import { UPLOAD_DISH_PHOTO, TYPE_DISH_NAME, TYPE_DISH_DESCRIPTION, CHOOSE_SOME_INGREDIENTS_ALERT, ADDED_NEW_DISH } from '../../texts'
 
 class AddNewDish extends Component{
 
@@ -61,7 +61,7 @@ class AddNewDish extends Component{
         if(image.length === 0) listOfErrors.push(UPLOAD_DISH_PHOTO)
         if(name.length === 0) listOfErrors.push(TYPE_DISH_NAME)
         if(description.length === 0) listOfErrors.push(TYPE_DISH_DESCRIPTION)
-        if(ingredients.length === 0) listOfErrors.push(CHOOSE_SOME_INGREDIENTS)
+        if(ingredients.length === 0) listOfErrors.push(CHOOSE_SOME_INGREDIENTS_ALERT)
         return listOfErrors
     }
 
