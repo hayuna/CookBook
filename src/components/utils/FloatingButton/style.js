@@ -26,7 +26,17 @@ export const Icon = styled.div`
     font-size: 32px;
     color: #fff;
     vertical-align: middle;
-    & > :after {
-        content: '+'
+`
+
+export const IconSign = styled.i`
+    :after {
+        content: ${
+            props => 
+            props.symbol === 'add' 
+            ? '\'\u002B\''
+            : props.symbol === 'tick' 
+            ? '\'\u2713\'' 
+            : ''};
+        color: ${props => props.symbol ? 'white' : 'blue'}
     }
 `

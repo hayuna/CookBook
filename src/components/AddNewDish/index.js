@@ -78,7 +78,7 @@ class AddNewDish extends Component{
                 </div>
                 <IngredientsSelect onChangeValue={ this.handleIngredientChosen } />
                 <DishDescription onChangeValue={ this.handleDescription } />
-                <FloatingButton onClick={this.addDish} />
+                <FloatingButton icon='tick' onClick={this.addDish} />
             </div>
         )
     }
