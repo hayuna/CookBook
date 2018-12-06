@@ -12,7 +12,7 @@ import Select from 'react-select'
 import FloatingButton from '../../utils/FloatingButton'
 import { API_GET_INGREDIENTS } from '../../../api';
 import { Container, FullContainer, Label } from './style'
-import { ADD_NEW_INGREDIENT, NAME, CHOOSE_SOME_INGREDIENTS } from '../../../texts';
+import { ADD_NEW_INGREDIENT, NAME, CHOOSE_SOME_INGREDIENTS, ADD, CANCEL, CHOOSE_INGREDIENT_PLACEHOLDER } from '../../../texts';
 
 class IngredientsSelect extends Component{
     state = {
@@ -36,10 +36,14 @@ class IngredientsSelect extends Component{
             this.setState({ options: options ? [...options, data] : data })
             this.setState({ selectedOption: selectedOption ? [ ...selectedOption, data ] : data })
         })
-        .catch(error => {
+        .catch(() => {
             const usedIngredient = options.filter(option => option.name === name)
             this.setState({ options: options ? [...options, usedIngredient] : usedIngredient })
             this.setState({ selectedOption: selectedOption ? [ ...selectedOption, usedIngredient ] : usedIngredient })
+        })
+        .then(() => {
+            const ingredients = this.state.selectedOption.map(option => option.value)
+            this.props.onChangeValue(ingredients)
         })
     }
     
@@ -68,7 +72,17 @@ class IngredientsSelect extends Component{
                 <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
                 <Label>{CHOOSE_SOME_INGREDIENTS}</Label>
                 <Container>
-                    <Select value={selectedOption} onChange={this.handleChange} options={options} isMulti/>
+                    <Select 
+                        className='ingredientSelect'
+                        clearableValue={false} 
+                        clearable={false} 
+                        backspaceRemovesValue={false} 
+                        placeholder={CHOOSE_INGREDIENT_PLACEHOLDER} 
+                        value={selectedOption} 
+                        onChange={this.handleChange} 
+                        options={options} 
+                        isMulti
+                    />
                     <div style={{marginLeft: '10px'}}>
                         <FloatingButton icon='add' onClick={this.handleClickOpen} />
                         <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
@@ -77,8 +91,8 @@ class IngredientsSelect extends Component{
                                 <TextField onChange={this.changeIngredient} autoFocus margin="dense" id="name" label={NAME} type="text" fullWidth/>
                             </DialogContent>
                             <DialogActions>
-                                <Button onClick={this.handleClose} color="primary">Cancel</Button>
-                                <Button onClick={this.addNewIngredient} color="primary">Add</Button>
+                                <Button onClick={this.handleClose} color="primary">{CANCEL}</Button>
+                                <Button onClick={this.addNewIngredient} color="primary">{ADD}</Button>
                             </DialogActions>
                         </Dialog>
                     </div>
