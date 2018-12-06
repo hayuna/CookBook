@@ -9,15 +9,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Select from 'react-select'
+import FloatingButton from '../../utils/FloatingButton'
 import { API_GET_INGREDIENTS } from '../../../api';
 import { Container, FullContainer, Label } from './style'
 import { ADD_NEW_INGREDIENT, NAME, CHOOSE_SOME_INGREDIENTS } from '../../../texts';
-
-const ButtonStyle = {
-    padding: '5px',
-    fontWeight: 'bold',
-    color: 'white'
-}
 
 class IngredientsSelect extends Component{
     state = {
@@ -74,8 +69,8 @@ class IngredientsSelect extends Component{
                 <Label>{CHOOSE_SOME_INGREDIENTS}</Label>
                 <Container>
                     <Select value={selectedOption} onChange={this.handleChange} options={options} isMulti/>
-                    <div>
-                        <Button style={ButtonStyle} onClick={this.handleClickOpen}>+</Button>
+                    <div style={{marginLeft: '10px'}}>
+                        <FloatingButton icon='add' onClick={this.handleClickOpen} />
                         <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                             <DialogTitle id="form-dialog-title">{ADD_NEW_INGREDIENT}</DialogTitle>
                             <DialogContent>

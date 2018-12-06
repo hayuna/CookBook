@@ -9,6 +9,7 @@ export const TextArea = styled.textarea`
     height: 300px;
     border-radius: 14px;
     resize: none;
+    font-size: 20px;
 `
 
 export const Label = styled.label`

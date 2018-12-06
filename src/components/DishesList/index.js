@@ -73,7 +73,7 @@ class DishesList extends Component {
                     {loading && <LoadingPizza />}
                     {dishes.map(i => <DishElement key={i.id} data={i} />)}                
                 </ScrollableContainer>
-                <FloatingButton onClick={this.handleClickFloatingButton}/>
+                <FloatingButton icon='add' onClick={this.handleClickFloatingButton}/>
             </div>
         )
     }
