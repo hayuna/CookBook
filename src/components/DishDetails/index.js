@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import { API_GET_DISHES } from '../../api'
@@ -9,50 +9,48 @@ import DishDescription from './DishDescription'
 import LoadingPizza from '../utils/LoadingPizza';
 import Header from '../utils/Header'
 
-class DishDetails extends Component {
-    state = {
-        loading: true,
-        dish: {
-            name: '', 
-            picture: '', 
-            ingredients: [], 
-            recipe: ''
-        },
+const DishDetails = (props) => {
+    const [loading, setLoading] = useState(true)
+    const [dish, setDish] = useState({
+        name: '', 
+        picture: '', 
+        ingredients: [], 
+        recipe: ''
+    })
+
+    const getDish = () => {
+        const id = props.match.params.dishId
+        try {
+            const result = await axios.get(`${API_GET_DISHES}/${id}`)
+            setLoading(true)
+            setDish(result.data)
+        } catch(error) {
+            toast.error(error.message)
+        } finally {
+            setLoading(false)
+        }
     }
 
-    componentDidMount(){
-        const id = this.props.match.params.dishId
-        axios
-            .get(`${API_GET_DISHES}/${id}`)
-            .then(({ data }) => {
-                this.setState({ 
-                    dish: data, 
-                    loading: false 
-                })
-            })
-            .catch(error => {
-                this.setState({ loading: false })
-                toast.error(error.message)
-            })
-    }
+    useEffect(
+        () => {
+            getDish()
+        }, []
+    )
 
-    render(){
-        const { name, picture, ingredients, recipe } = this.state.dish
-        const { loading } = this.state
-        return (
-            <div>
-                <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
-                <Header redirect />
-                {loading && <LoadingPizza />}
-                <DishImage name={name} location={picture} />
-                <DishName name={name} />
-                {ingredients.map(ingredient => 
-                    <IngredientBadge key={ingredient.id} name={ingredient.name}></IngredientBadge>
-                )}
-                <DishDescription>{recipe}</DishDescription>
-            </div>
-        )
-    }
+    const { name, picture, ingredients, recipe } = dish
+    return (
+        <div>
+            <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
+            <Header redirect />
+            {loading && <LoadingPizza />}
+            <DishImage name={name} location={picture} />
+            <DishName name={name} />
+            {ingredients.map(ingredient => 
+                <IngredientBadge key={ingredient.id} name={ingredient.name} />
+            )}
+            <DishDescription>{recipe}</DishDescription>
+        </div>
+    )
 }
 
 export default DishDetails
