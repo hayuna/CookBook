@@ -3,8 +3,8 @@ import { Loading } from './style'
 
 class LoadingPizza extends React.Component{
     componentDidMount(){
-        let toRadians = (deg) => deg * Math.PI / 180
-        let map = (val, a1, a2, b1, b2) => b1 + (val - a1) * (b2 - b1) / (a2 - a1)
+        const toRadians = (deg) => deg * Math.PI / 180
+        const map = (val, a1, a2, b1, b2) => b1 + (val - a1) * (b2 - b1) / (a2 - a1)
         const refs = this.refs.canvas
         class Pizza {
             constructor() {
@@ -20,7 +20,7 @@ class LoadingPizza extends React.Component{
                 this.cooldown = 10
             }
             update() {
-                let ctx = this.ctx
+                const ctx = this.ctx
                 ctx.clearRect(0, 0, this.width, this.height)
                 if (--this.cooldown < 0) this.progress += this.sliceRadians*0.01 + this.progress * 0.07
                 ctx.save()
@@ -28,7 +28,7 @@ class LoadingPizza extends React.Component{
                 for (let i = this.sliceCount - 1; i > 0; i--) {
                     let rad
                     if (i === this.sliceCount - 1) {
-                        let ii = this.sliceCount - 1
+                        const ii = this.sliceCount - 1
                         rad = this.sliceRadians * i + this.progress
                         ctx.strokeStyle = '#FBC02D'
                         cheese(ctx, rad, .9, ii, this.sliceSize, this.sliceDegree)
@@ -44,8 +44,8 @@ class LoadingPizza extends React.Component{
                     ctx.strokeStyle = '#F57F17'
                     ctx.stroke()
                     // slice
-                    let startX = this.sliceSize * Math.cos(rad)
-                    let startY = this.sliceSize * Math.sin(rad)
+                    const startX = this.sliceSize * Math.cos(rad)
+                    const startY = this.sliceSize * Math.sin(rad)
                     ctx.fillStyle = '#FBC02D'
                     ctx.beginPath()
                     ctx.moveTo(0, 0)
@@ -57,8 +57,8 @@ class LoadingPizza extends React.Component{
                     ctx.lineWidth = .3
                     ctx.stroke()
                     // meat
-                    let x = this.sliceSize * .65 * Math.cos(rad + this.sliceRadians / 2)
-                    let y = this.sliceSize * .65 * Math.sin(rad + this.sliceRadians / 2)
+                    const x = this.sliceSize * .65 * Math.cos(rad + this.sliceRadians / 2)
+                    const y = this.sliceSize * .65 * Math.sin(rad + this.sliceRadians / 2)
                     ctx.beginPath()
                     ctx.arc(x, y, this.sliceDegree / 6, 0, 2 * Math.PI)
                     ctx.fillStyle = '#D84315'
@@ -75,16 +75,16 @@ class LoadingPizza extends React.Component{
             }
         }
         function cheese(ctx, rad, multi, ii, sliceSize, sliceDegree) {
-            let x1 = sliceSize * multi * Math.cos(toRadians(ii * sliceDegree) - .2)
-            let y1 = sliceSize * multi * Math.sin(toRadians(ii * sliceDegree) - .2)
-            let x2 = sliceSize * multi * Math.cos(rad + .2)
-            let y2 = sliceSize * multi * Math.sin(rad + .2)
-            let csx = sliceSize * Math.cos(rad)
-            let csy = sliceSize * Math.sin(rad)
-            var d = Math.sqrt((x1 - csx) * (x1 - csx) + (y1 - csy) * (y1 - csy))
+            const x1 = sliceSize * multi * Math.cos(toRadians(ii * sliceDegree) - .2)
+            const y1 = sliceSize * multi * Math.sin(toRadians(ii * sliceDegree) - .2)
+            const x2 = sliceSize * multi * Math.cos(rad + .2)
+            const y2 = sliceSize * multi * Math.sin(rad + .2)
+            const csx = sliceSize * Math.cos(rad)
+            const csy = sliceSize * Math.sin(rad)
+            const d = Math.sqrt((x1 - csx) * (x1 - csx) + (y1 - csy) * (y1 - csy))
             ctx.beginPath()
             ctx.lineCap = 'round'
-            let percentage = map(d, 15, 70, 1.2, 0.2)
+            const percentage = map(d, 15, 70, 1.2, 0.2)
             let tx = x1 + (x2 - x1) * percentage
             let ty = y1 + (y2 - y1) * percentage
             ctx.moveTo(x1, y1)
@@ -103,7 +103,7 @@ class LoadingPizza extends React.Component{
             pizza.update()
         }
           
-          window.requestAnimationFrame(step);
+        window.requestAnimationFrame(step);
     }
 
     render(){
