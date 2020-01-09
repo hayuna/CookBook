@@ -68,7 +68,7 @@ const DishesList = () => {
             {addingNewDish && <Redirect to='/new' />}
             <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
             <Header />
-            <SearchBar onChangeValue={getDish(term)} />
+            <SearchBar onChangeValue={getDish} />
             <ScrollableContainer>
                 {loading && <LoadingPizza />}
                 {dishes.map(i => <DishElement key={i.id} data={i} />)}                
