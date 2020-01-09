@@ -1,43 +1,32 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { FaSearch } from 'react-icons/fa';
 import { Search, SearchInput } from './style'
 import { SEARCHBAR_PLACEHOLDER } from '../../../texts';
 
-const IconStyle = {
-    position: 'relative', 
-    top: 30, 
-    left: 10
-}
 
-class SearchBar extends Component {
-    state = {
-        typing: false,
-        typingTimeout: 0,
-        timeout: 300
-    }
+const SearchBar = ({ onChangeValue }) => {
+    const [typingTimeout, setTypingTimeout] = useState(0);
 
-    handleChange = event => {
-        const { timeout, typingTimeout } = this.state
-        const { onChangeValue } = this.props 
-
+    const handleChange = event => {
         if (typingTimeout) clearTimeout(typingTimeout);
         const text = event.target.value
-        this.setState({
-            typing: false,
-            typingTimeout: setTimeout(() => {
-                onChangeValue(text)
-            }, timeout)
-        });
+        setTypingTimeout(setTimeout(() => {
+            onChangeValue(text)
+        }, 300))
     }
 
-    render() {
-        return (
-            <Search>
-                <FaSearch style={IconStyle} />
-                <SearchInput placeholder={SEARCHBAR_PLACEHOLDER} onChange={this.handleChange} />
-            </Search>
-        );
+    const IconStyle = {
+        position: 'relative', 
+        top: 30, 
+        left: 10
     }
+
+    return (
+        <Search>
+            <FaSearch style={IconStyle} />
+            <SearchInput placeholder={SEARCHBAR_PLACEHOLDER} onChange={handleChange} />
+        </Search>
+    );
 }
 
 export default SearchBar
