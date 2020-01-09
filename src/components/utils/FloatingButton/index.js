@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FloatingMenu, Container, Icon, IconSign } from './style'
 
-const FloatingButton = ({ icon, onclick }) => {
+const FloatingButton = ({ onClick, icon }) => {
     const [symbol, setSymbol] = useState('')
 
     useEffect(
@@ -13,7 +13,7 @@ const FloatingButton = ({ icon, onclick }) => {
     return (
         <Container>
             <FloatingMenu>
-                <div onClick={onclick}>
+                <div onClick={onClick}>
                     <Icon><IconSign symbol={symbol} /></Icon>
                 </div>
             </FloatingMenu>

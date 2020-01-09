@@ -24,17 +24,17 @@ const IngredientsSelect = ({ onChangeValue }) => {
     const handleClose = () => setOpen(false)
     const changeIngredient = e => setName(e.target.value)
     const addNewIngredient = async () => {
-        try{
+        try {
             handleClose()
-            const result = await axios.post(API_GET_INGREDIENTS, {name})
-            result.data.value = result.data.id; 
+            const result = await axios.post(API_GET_INGREDIENTS, { name })
+            result.data.value = result.data.id;
             result.data.label = result.data.name
             setOptions(options ? [...options, result.data] : result.data)
-            setSelectedOption(selectedOption ? [ ...selectedOption, result.data ] : result.data)    
-        }catch {
+            setSelectedOption(selectedOption ? [...selectedOption, result.data] : result.data)
+        } catch {
             const usedIngredient = options.filter(option => option.name === name)
             setOptions(options ? [...options, usedIngredient] : usedIngredient)
-            setSelectedOption(selectedOption ? [ ...selectedOption, usedIngredient ] : usedIngredient)
+            setSelectedOption(selectedOption ? [...selectedOption, usedIngredient] : usedIngredient)
         } finally {
             const ingredients = selectedOption.map(option => option.value)
             onChangeValue(ingredients)
@@ -42,11 +42,11 @@ const IngredientsSelect = ({ onChangeValue }) => {
     }
 
     const getIngredients = async () => {
-        try{
+        try {
             const result = await axios.get(API_GET_INGREDIENTS)
             const opts = result.data.map(d => { d.value = d.id; d.label = d.name; return d })
-            setOptions(opts)    
-        } catch(error){
+            setOptions(opts)
+        } catch (error) {
             toast.error(error.message)
 
         }
@@ -63,29 +63,29 @@ const IngredientsSelect = ({ onChangeValue }) => {
         const ingredients = selected.map(option => option.value)
         onChangeValue(ingredients)
     }
-    
+
     return (
         <FullContainer>
             <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
             <Label>{CHOOSE_SOME_INGREDIENTS}</Label>
             <Container>
-                <Select 
+                <Select
                     className='ingredientSelect'
-                    clearableValue={false} 
-                    clearable={false} 
-                    backspaceRemovesValue={false} 
-                    placeholder={CHOOSE_INGREDIENT_PLACEHOLDER} 
-                    value={selectedOption} 
-                    onChange={handleChange} 
-                    options={options} 
+                    clearableValue={false}
+                    clearable={false}
+                    backspaceRemovesValue={false}
+                    placeholder={CHOOSE_INGREDIENT_PLACEHOLDER}
+                    value={selectedOption}
+                    onChange={handleChange}
+                    options={options}
                     isMulti
                 />
-                <div style={{marginLeft: '10px'}}>
-                    <FloatingButton icon='add' onClick={this.handleClickOpen} />
+                <div style={{ marginLeft: '10px' }}>
+                    <FloatingButton icon='add' onClick={handleClickOpen} />
                     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">{ADD_NEW_INGREDIENT}</DialogTitle>
                         <DialogContent>
-                            <TextField onChange={changeIngredient} autoFocus margin="dense" id="name" label={NAME} type="text" fullWidth/>
+                            <TextField onChange={changeIngredient} autoFocus margin="dense" id="name" label={NAME} type="text" fullWidth />
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={handleClose} color="primary">{CANCEL}</Button>

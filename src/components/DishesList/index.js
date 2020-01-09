@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router'
 import styled from 'styled-components'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,19 +22,15 @@ const ScrollableContainer = styled.div`
 const DishesList = () => {
     const [dishes, setDishes] = useState([])
     const [loading, setLoading] = useState(true)
-    const [disableSearching, setDisableSearching] = useState(false)
     const [addingNewDish, setAddingNewDish] = useState(false)
- 
+
     const getDishes = async () => {
         try {
             const result = await axios.get(API_GET_DISHES)
             setDishes(result.data)
             setLoading(false)
-        } catch(error) {
-            toast.error(error.message, {
-                onOpen: () => setDisableSearching(true),
-                onClose: () => setDisableSearching(false)
-            })
+        } catch (error) {
+            toast.error(error.message)
         } finally {
             setLoading(false)
         }
@@ -47,11 +43,8 @@ const DishesList = () => {
             })
             setDishes(result.data)
             setLoading(false)
-        } catch(error) {
-            toast.error(error.message, {
-                onOpen: () => setDisableSearching(true),
-                onClose: () => setDisableSearching(false)
-            })
+        } catch (error) {
+            toast.error(error.message)
         } finally {
             setLoading(false)
         }
@@ -62,7 +55,7 @@ const DishesList = () => {
             getDishes()
         }, []
     )
-    
+
     return (
         <div>
             {addingNewDish && <Redirect to='/new' />}
@@ -71,9 +64,9 @@ const DishesList = () => {
             <SearchBar onChangeValue={getDish} />
             <ScrollableContainer>
                 {loading && <LoadingPizza />}
-                {dishes.map(i => <DishElement key={i.id} data={i} />)}                
+                {dishes.map(i => <DishElement key={i.id} data={i} />)}
             </ScrollableContainer>
-            <FloatingButton icon='add' onClick={() => setAddingNewDish(true)}/>
+            <FloatingButton icon='add' onClick={() => setAddingNewDish(true)} />
         </div>
     )
 }

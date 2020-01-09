@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router';
 
 import './style.css';
 import { BackButton, Container } from './style';
@@ -12,10 +12,10 @@ const Header = ({ redirect }) => {
         setRedirect(true);
     }
 
-    return(
+    return (
         <Container>
             <h2 className='header'>{APP_NAME}</h2>
-            {redirect && <BackButton onClick={ redirectToHome }/>}
+            {redirect && <BackButton onClick={redirectToHome} />}
             {isRedirect && <Redirect to='/dishes' />}
         </Container>
     )
