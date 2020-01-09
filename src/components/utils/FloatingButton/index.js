@@ -1,25 +1,24 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FloatingMenu, Container, Icon, IconSign } from './style'
 
-class FloatingButton extends Component{
-	state = {
-		symbol: ''
-	}
-	componentDidMount(){
-		const { icon } = this.props
-		this.setState({symbol: icon})
-	}
-	render() {
-		return (
-			<Container>
-				<FloatingMenu>
-                    <div onClick={() => this.props.onClick()}>
-						<Icon><IconSign symbol={this.state.symbol} /></Icon>
-                    </div>
-				</FloatingMenu>
-			</Container>
-		)
-	}
+const FloatingButton = ({ icon, onclick }) => {
+    const [symbol, setSymbol] = useState('')
+
+    useEffect(
+        () => {
+            setSymbol(icon)
+        }, []
+    )
+
+    return (
+        <Container>
+            <FloatingMenu>
+                <div onClick={onclick}>
+                    <Icon><IconSign symbol={symbol} /></Icon>
+                </div>
+            </FloatingMenu>
+        </Container>
+    )
 }
 
 export default FloatingButton
