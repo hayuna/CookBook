@@ -18,7 +18,7 @@ const DishDetails = (props) => {
         recipe: ''
     })
 
-    const getDish = () => {
+    const getDish = async () => {
         const id = props.match.params.dishId
         try {
             const result = await axios.get(`${API_GET_DISHES}/${id}`)
