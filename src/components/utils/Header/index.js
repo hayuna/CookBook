@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import './style.css';
-import { BackButton, Container } from './style'
+import { BackButton, Container } from './style';
 import { APP_NAME } from '../../../texts';
 
-class Header extends Component{
-    state = {
-        redirect: false
+const Header = ({ redirect }) => {
+    const [isRedirect, setRedirect] = useState(false);
+
+    const redirectToHome = () => {
+        setRedirect(true);
     }
 
-    redirectToHome = () => {
-        this.setState({redirect: true})
-    }
-
-    render(){
-        return(
-            <Container>
-                <h2 className='header'>{APP_NAME}</h2>
-                {this.props.redirect && <BackButton onClick={ this.redirectToHome }/>}
-                {this.state.redirect && <Redirect to='/dishes' />}
-            </Container>
-        )
-    }
+    return(
+        <Container>
+            <h2 className='header'>{APP_NAME}</h2>
+            {redirect && <BackButton onClick={ redirectToHome }/>}
+            {isRedirect && <Redirect to='/dishes' />}
+        </Container>
+    )
 }
 
 export default Header
