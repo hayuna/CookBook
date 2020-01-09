@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
@@ -19,64 +19,63 @@ const ScrollableContainer = styled.div`
     }
 `
 
-class DishesList extends Component {
-    state = {
-        dishes: [],
-        loading: true,
-        disableSearching: false,
-        addingNewDish: false
-    } 
+const DishesList = () => {
+    const [dishes, setDishes] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [disableSearching, setDisableSearching] = useState(false)
+    const [addingNewDish, setAddingNewDish] = useState(false)
  
-    componentDidMount(){
-        axios
-            .get(API_GET_DISHES)
-            .then(({ data }) => {
-                this.setState({ dishes: data, loading: false })
-            })
-            .catch(error => {
-                this.setState({ loading: false })
-                toast.error(error.message, {
-                    onOpen: () => this.setState({ disableSearching: true }),
-                    onClose: () => this.setState({ disableSearching: false })
-                })
-            })
-    }
-
-    handleChangeValue = term => {
-        axios
-        .get(API_GET_DISHES, {
-            params: { term }
-        })
-        .then(({ data }) => {
-            this.setState({ dishes: data, loading: false })
-        })
-        .catch(error => {
-            this.setState({ loading: false })
+    const getDishes = async () => {
+        try {
+            const result = await axios.get(API_GET_DISHES)
+            setDishes(result.data)
+            setLoading(false)
+        } catch(error) {
             toast.error(error.message, {
-                onOpen: () => this.setState({ disableSearching: true }),
-                onClose: () => this.setState({ disableSearching: false })
+                onOpen: () => setDisableSearching(true),
+                onClose: () => setDisableSearching(false)
             })
-        })
+        } finally {
+            setLoading(false)
+        }
     }
 
-    handleClickFloatingButton = () => this.setState({addingNewDish: true})
-    
-    render(){
-        const { loading, dishes, addingNewDish } = this.state
-        if(addingNewDish) return <Redirect to='/new' />
-        return (
-            <div>
-                <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
-                <Header />
-                <SearchBar onChangeValue={this.handleChangeValue} />
-                <ScrollableContainer>
-                    {loading && <LoadingPizza />}
-                    {dishes.map(i => <DishElement key={i.id} data={i} />)}                
-                </ScrollableContainer>
-                <FloatingButton icon='add' onClick={this.handleClickFloatingButton}/>
-            </div>
-        )
+    const getDish = async (term) => {
+        try {
+            const result = await axios.get(API_GET_DISHES, {
+                params: { term }
+            })
+            setDishes(result.data)
+            setLoading(false)
+        } catch(error) {
+            toast.error(error.message, {
+                onOpen: () => setDisableSearching(true),
+                onClose: () => setDisableSearching(false)
+            })
+        } finally {
+            setLoading(false)
+        }
     }
+
+    useEffect(
+        () => {
+            getDishes()
+        }, []
+    )
+    
+    return (
+        <div>
+            {addingNewDish && <Redirect to='/new' />}
+            <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
+            <Header />
+            <SearchBar onChangeValue={getDish(term)} />
+            <ScrollableContainer>
+                {loading && <LoadingPizza />}
+                {dishes.map(i => <DishElement key={i.id} data={i} />)}                
+            </ScrollableContainer>
+            <FloatingButton icon='add' onClick={() => setAddingNewDish(true)}/>
+        </div>
+    )
 }
 
 export default DishesList
