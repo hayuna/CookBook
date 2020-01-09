@@ -29,8 +29,8 @@ const IngredientsSelect = ({ onChangeValue }) => {
             const result = await axios.post(API_GET_INGREDIENTS, {name})
             result.data.value = result.data.id; 
             result.data.label = result.data.name
-            setOptions(options ? [...options, data] : data)
-            setSelectedOption(selectedOption ? [ ...selectedOption, data ] : data)    
+            setOptions(options ? [...options, result.data] : result.data)
+            setSelectedOption(selectedOption ? [ ...selectedOption, result.data ] : result.data)    
         }catch {
             const usedIngredient = options.filter(option => option.name === name)
             setOptions(options ? [...options, usedIngredient] : usedIngredient)
