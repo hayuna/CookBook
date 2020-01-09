@@ -1,29 +1,24 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Container, Label, TextArea } from './style'
 import { DISH_DESCRIPTION } from '../../../texts'
 
-class DishDescription extends Component{
+const DishDescription = ({ onChangeValue }) => {
+    const [value, setValue] = useState('')
 
-    state = {
-        value: ''
+    const handleChange = e => {
+        setValue(e.target.value)
+        onChangeValue(e.target.value)
     }
 
-    handleChange = e => {
-        this.setState({value: e.target.value})
-        this.props.onChangeValue(e.target.value)
-    }
-
-    render(){
-        return(
-            <Container>
-                <Label>{DISH_DESCRIPTION}
-                    <div>
-                        <TextArea value={this.state.value} onChange={this.handleChange} />
-                    </div>
-                </Label>
-            </Container>
-        )
-    }
+    return(
+        <Container>
+            <Label>{DISH_DESCRIPTION}
+                <div>
+                    <TextArea value={value} onChange={handleChange} />
+                </div>
+            </Label>
+        </Container>
+    )
 }
 
 export default DishDescription
