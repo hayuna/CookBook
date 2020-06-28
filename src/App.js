@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import DishesList from './components/DishesList'
@@ -7,22 +7,18 @@ import NotFound from './components/utils/NotFound'
 import { Container } from './style'
 import AddNewDish from './components/AddNewDish';
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Container>
-          <Switch>
-            <Route exact path='/' component={DishesList} />
-            <Route exact path='/dishes' component={DishesList} />
-            <Route exact path='/dishes/:dishId' component={DishDetails} />
-            <Route exact path='/new' component={AddNewDish} />
-            <Route component={NotFound} />
-          </Switch>
-        </Container>
-      </Router>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <Container>
+      <Switch>
+        <Route exact path='/' component={DishesList} />
+        <Route exact path='/dishes' component={DishesList} />
+        <Route exact path='/dishes/:dishId' component={DishDetails} />
+        <Route exact path='/new' component={AddNewDish} />
+        <Route component={NotFound} />
+      </Switch>
+    </Container>
+  </Router>
+);
 
 export default App;

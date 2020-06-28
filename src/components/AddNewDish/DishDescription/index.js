@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Label, TextArea } from './style'
-import { DISH_DESCRIPTION } from '../../../texts'
+import t from '../../../translations/en.json'
 
 const DishDescription = ({ onChangeValue }) => {
     const [value, setValue] = useState('')
@@ -10,9 +10,9 @@ const DishDescription = ({ onChangeValue }) => {
         onChangeValue(e.target.value)
     }
 
-    return(
+    return (
         <Container>
-            <Label>{DISH_DESCRIPTION}
+            <Label>{t.dishDescription}
                 <div>
                     <TextArea value={value} onChange={handleChange} />
                 </div>

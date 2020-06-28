@@ -64,7 +64,7 @@ const DishesList = () => {
             <SearchBar onChangeValue={getDish} />
             <ScrollableContainer>
                 {loading && <LoadingPizza />}
-                {dishes.map(i => <DishElement key={i.id} data={i} />)}
+                {dishes.map(i => <DishElement key={i._id} data={i} />)}
             </ScrollableContainer>
             <FloatingButton icon='add' onClick={() => setAddingNewDish(true)} />
         </div>

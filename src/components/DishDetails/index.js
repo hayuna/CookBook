@@ -12,9 +12,9 @@ import Header from '../utils/Header'
 const DishDetails = (props) => {
     const [loading, setLoading] = useState(true)
     const [dish, setDish] = useState({
-        name: '', 
-        picture: '', 
-        ingredients: [], 
+        name: '',
+        picture: '',
+        ingredients: [],
         recipe: ''
     })
 
@@ -24,7 +24,7 @@ const DishDetails = (props) => {
             const result = await axios.get(`${API_GET_DISHES}/${id}`)
             setLoading(true)
             setDish(result.data)
-        } catch(error) {
+        } catch (error) {
             toast.error(error.message)
         } finally {
             setLoading(false)
@@ -45,8 +45,8 @@ const DishDetails = (props) => {
             {loading && <LoadingPizza />}
             <DishImage name={name} location={picture} />
             <DishName name={name} />
-            {ingredients.map(ingredient => 
-                <IngredientBadge key={ingredient.id} name={ingredient.name} />
+            {ingredients && ingredients.map(ingredient =>
+                <IngredientBadge key={ingredient._id} name={ingredient.name} />
             )}
             <DishDescription>{recipe}</DishDescription>
         </div>

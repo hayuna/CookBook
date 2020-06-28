@@ -1,15 +1,14 @@
 import React, { useState, useRef } from 'react';
+import clsx from 'classnames'
 import './style.css'
 
-const UploadImage = ({ onFileChosen, activeColor, baseColor, overlayColor }) => {
-    const [active, setActive] = useState(false)
+const UploadImage = ({ onFileChosen }) => {
     const [imageSrc, setImageSrc] = useState('')
     const [loaded, setLoaded] = useState(false)
     const inputRef = useRef(null)
 
     const onDrop = e => {
         e.preventDefault();
-        setActive(false)
         onFileChange(e, e.dataTransfer.files[0]);
     }
 
@@ -27,16 +26,13 @@ const UploadImage = ({ onFileChosen, activeColor, baseColor, overlayColor }) => 
         }
         reader.readAsDataURL(file);
     }
-
-    const iconColor = active ? activeColor : loaded ? overlayColor : baseColor;
-
     return (
         <label
-            className={`uploader ${loaded ? 'loaded' : ''}`}
+            className={`uploader ${loaded && 'loaded'}`}
             onDrop={onDrop}
-            style={{ outlineColor: active ? activeColor : baseColor, marginLeft: '8px' }}>
-            <img alt='temp' src={imageSrc} className={loaded ? 'loaded' : ''} />
-            <i className="icon icon-upload" style={{ color: iconColor }}></i>
+            style={{ marginLeft: '8px' }}>
+            <img alt='temp' src={imageSrc} className={clsx({ 'loaded': loaded })} />
+            <i className="icon icon-upload"></i>
             <input type="file" accept="image/*" onChange={onFileChange} ref={inputRef} />
         </label>
     )

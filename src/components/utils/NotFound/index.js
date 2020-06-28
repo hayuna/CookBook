@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router'
-import { ADDRESS_NOT_FOUND, NOT_FOUND_REDIRECTING, SECONDS } from '../../../texts';
+import t from '../../../translations/en.json'
 
 const NotFound = ({ location }) => {
     const [counter, setCounter] = useState(10)
@@ -20,8 +20,8 @@ const NotFound = ({ location }) => {
 
     return (
         <div>
-            <p>{ADDRESS_NOT_FOUND} <code>{location.pathname}</code></p>
-            <p>{NOT_FOUND_REDIRECTING} {counter} {SECONDS}</p>
+            <p>{t.addressNotFound} <code>{location.pathname}</code></p>
+            <p>{t.notFoundRedirecting} {counter} {t.seconds}</p>
             {counter === 0 && <Redirect to='/' />}
         </div>
     )

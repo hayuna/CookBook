@@ -1,0 +1,21 @@
+{
+    "dishName": "Type dish name",
+    "dishNamePlaceholder": "e.g. Cake",
+    "addNewIngredient": "Add New Ingredient",
+    "name": "Name",
+    "chooseSomeIngredients": "Ingredients",
+    "uploadDishPhoto": "You didn't choose any dish photo",
+    "typeDishName": "You didn't type dish name",
+    "typeDishDescription": "You didn't type dish description",
+    "appName": "CookBook",
+    "addressNotFound": "Address not found",
+    "notFoundRedirecting": "Redirecting to Home Page for ",
+    "seconds": " seconds.",
+    "searchbarPlaceholder": "Type some dish or ingredients",
+    "addedNewDish": "Added new dish",
+    "add": "Add",
+    "cancel": "Cancel",
+    "chooseIngredientPlaceholder": "Choose some ingredients...",
+    "chooseSomeIngredientsAlert": "You didn't choose dish ingredients",
+    "dishDescription": "Dish description"
+}

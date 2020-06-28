@@ -1,0 +1,21 @@
+{
+    "dishName": "Wprowadź nazwę dania",
+    "dishNamePlaceholder": "np. Ciasto",
+    "addNewIngredient": "Dodaj nowy składnik",
+    "name": "Nazwa",
+    "chooseSomeIngredients": "Składniki",
+    "uploadDishPhoto": "Nie dodałeś zdjęcia",
+    "typeDishName": "Nie podałeś nazwy dania",
+    "typeDishDescription": "Nie podałeś opisu dania",
+    "appName": "CookBook",
+    "addressNotFound": "Adres nie został znaleziony",
+    "notFoundRedirecting": "Przekierowanie do strony głównej za ",
+    "seconds": " sekund.",
+    "searchbarPlaceholder": "Wprowadź jakieś danie lub składnik",
+    "addedNewDish": "Danie zostało dodane",
+    "add": "Dodaj",
+    "cancel": "Anuluj",
+    "chooseIngredientPlaceholder": "Wybierz składniki...",
+    "chooseSomeIngredientsAlert": "Nie wybrałeś zadnych składników",
+    "dishDescription": "Opis dania"
+}

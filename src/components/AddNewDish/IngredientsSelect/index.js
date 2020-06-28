@@ -12,7 +12,7 @@ import Select from 'react-select'
 import FloatingButton from '../../utils/FloatingButton'
 import { API_GET_INGREDIENTS } from '../../../api';
 import { Container, FullContainer, Label } from './style'
-import { ADD_NEW_INGREDIENT, NAME, CHOOSE_SOME_INGREDIENTS, ADD, CANCEL, CHOOSE_INGREDIENT_PLACEHOLDER } from '../../../texts';
+import t from '../../../translations/en.json'
 
 const IngredientsSelect = ({ onChangeValue }) => {
     const [selectedOption, setSelectedOption] = useState(null)
@@ -44,7 +44,7 @@ const IngredientsSelect = ({ onChangeValue }) => {
     const getIngredients = async () => {
         try {
             const result = await axios.get(API_GET_INGREDIENTS)
-            const opts = result.data.map(d => { d.value = d.id; d.label = d.name; return d })
+            const opts = result.data.map(d => { d.value = d._id; d.label = d.name; return d })
             setOptions(opts)
         } catch (error) {
             toast.error(error.message)
@@ -67,14 +67,14 @@ const IngredientsSelect = ({ onChangeValue }) => {
     return (
         <FullContainer>
             <ToastContainer autoClose={1000} position={toast.POSITION.TOP_CENTER} />
-            <Label>{CHOOSE_SOME_INGREDIENTS}</Label>
+            <Label>{t.chooseSomeIngredients}</Label>
             <Container>
                 <Select
                     className='ingredientSelect'
                     clearableValue={false}
                     clearable={false}
                     backspaceRemovesValue={false}
-                    placeholder={CHOOSE_INGREDIENT_PLACEHOLDER}
+                    placeholder={t.chooseIngredientPlaceholder}
                     value={selectedOption}
                     onChange={handleChange}
                     options={options}
@@ -83,13 +83,13 @@ const IngredientsSelect = ({ onChangeValue }) => {
                 <div style={{ marginLeft: '10px' }}>
                     <FloatingButton icon='add' onClick={handleClickOpen} />
                     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">{ADD_NEW_INGREDIENT}</DialogTitle>
+                        <DialogTitle id="form-dialog-title">{t.addNewIngredient}</DialogTitle>
                         <DialogContent>
-                            <TextField onChange={changeIngredient} autoFocus margin="dense" id="name" label={NAME} type="text" fullWidth />
+                            <TextField onChange={changeIngredient} autoFocus margin="dense" id="name" label={t.name} type="text" fullWidth />
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose} color="primary">{CANCEL}</Button>
-                            <Button onClick={addNewIngredient} color="primary">{ADD}</Button>
+                            <Button onClick={handleClose} color="primary">{t.cancel}</Button>
+                            <Button onClick={addNewIngredient} color="primary">{t.add}</Button>
                         </DialogActions>
                     </Dialog>
                 </div>

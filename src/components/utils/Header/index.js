@@ -3,7 +3,7 @@ import { Redirect } from 'react-router';
 
 import './style.css';
 import { BackButton, Container } from './style';
-import { APP_NAME } from '../../../texts';
+import t from '../../../translations/en.json'
 
 const Header = ({ redirect }) => {
     const [isRedirect, setRedirect] = useState(false);
@@ -14,7 +14,7 @@ const Header = ({ redirect }) => {
 
     return (
         <Container>
-            <h2 className='header'>{APP_NAME}</h2>
+            <h2 className='header'>{t.appName}</h2>
             {redirect && <BackButton onClick={redirectToHome} />}
             {isRedirect && <Redirect to='/dishes' />}
         </Container>

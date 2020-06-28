@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaSearch } from 'react-icons/fa';
 import { Search, SearchInput } from './style'
-import { SEARCHBAR_PLACEHOLDER } from '../../../texts';
+import t from '../../../translations/en.json'
 
 
 const SearchBar = ({ onChangeValue }) => {
@@ -16,15 +16,15 @@ const SearchBar = ({ onChangeValue }) => {
     }
 
     const IconStyle = {
-        position: 'relative', 
-        top: 30, 
+        position: 'relative',
+        top: 30,
         left: 10
     }
 
     return (
         <Search>
             <FaSearch style={IconStyle} />
-            <SearchInput placeholder={SEARCHBAR_PLACEHOLDER} onChange={handleChange} />
+            <SearchInput placeholder={t.searchbarPlaceholder} onChange={handleChange} />
         </Search>
     );
 }

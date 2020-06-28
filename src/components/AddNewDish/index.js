@@ -10,18 +10,18 @@ import UploadImage from './UploadImage';
 import IngredientsSelect from './IngredientsSelect';
 import FloatingButton from '../utils/FloatingButton';
 import { API_GET_DISHES } from '../../api';
-import { UPLOAD_DISH_PHOTO, TYPE_DISH_NAME, TYPE_DISH_DESCRIPTION, CHOOSE_SOME_INGREDIENTS_ALERT, ADDED_NEW_DISH } from '../../texts'
+import t from '../../translations/en.json'
 
 const AddNewDish = () => {
-    const [image, setImage] = useState('')
+    const [picture, setPicture] = useState('')
     const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
+    const [recipe, setRecipe] = useState('')
     const [ingredients, setIngredients] = useState([])
     const [added, setAdded] = useState(false)
 
-    const handleFileChosen = image => setImage(image)
+    const handleFileChosen = image => setPicture(image)
     const handleName = name => setName(name)
-    const handleDescription = description => setDescription(description)
+    const handleRecipe = recipe => setRecipe(recipe)
     const handleIngredientChosen = ingredients => setIngredients(ingredients)
     const addDish = async () => {
         const errors = validate()
@@ -36,11 +36,11 @@ const AddNewDish = () => {
             try {
                 await axios.post(API_GET_DISHES, {
                     name,
-                    picture: image,
-                    recipe: description,
-                    ingredientIds: ingredients
+                    picture,
+                    recipe,
+                    ingredients
                 })
-                toast.success(ADDED_NEW_DISH, {
+                toast.success(t.AddNewDish, {
                     onClose: () => setAdded(true)
                 })
             } catch (error) {
@@ -51,10 +51,10 @@ const AddNewDish = () => {
 
     const validate = () => {
         const listOfErrors = []
-        if (image.length === 0) listOfErrors.push(UPLOAD_DISH_PHOTO)
-        if (name.length === 0) listOfErrors.push(TYPE_DISH_NAME)
-        if (description.length === 0) listOfErrors.push(TYPE_DISH_DESCRIPTION)
-        if (ingredients.length === 0) listOfErrors.push(CHOOSE_SOME_INGREDIENTS_ALERT)
+        if (picture.length === 0) listOfErrors.push(t.uploadDishPhoto)
+        if (name.length === 0) listOfErrors.push(t.typeDishName)
+        if (recipe.length === 0) listOfErrors.push(t.typeDishDescription)
+        if (ingredients.length === 0) listOfErrors.push(t.chooseSomeIngredientsAlert)
         return listOfErrors
     }
 
@@ -68,7 +68,7 @@ const AddNewDish = () => {
                 <DishName onChangeValue={handleName} />
             </div>
             <IngredientsSelect onChangeValue={handleIngredientChosen} />
-            <DishDescription onChangeValue={handleDescription} />
+            <DishDescription onChangeValue={handleRecipe} />
             <FloatingButton icon='tick' onClick={addDish} />
         </div>
     )
