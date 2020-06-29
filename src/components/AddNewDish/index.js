@@ -9,7 +9,7 @@ import DishName from './DishName';
 import UploadImage from './UploadImage';
 import IngredientsSelect from './IngredientsSelect';
 import FloatingButton from '../utils/FloatingButton';
-import { API_GET_DISHES } from '../../api';
+import { API_GET_DISHES, API_UPLOAD } from '../../api';
 import t from '../../translations/en.json'
 
 const AddNewDish = () => {
@@ -35,9 +35,10 @@ const AddNewDish = () => {
             })
         } else {
             try {
+                const { data: pictureURL } = await axios.post(API_UPLOAD, { file: picture })
                 await axios.post(API_GET_DISHES, {
                     name,
-                    picture,
+                    picture: pictureURL,
                     recipe,
                     ingredients
                 })
