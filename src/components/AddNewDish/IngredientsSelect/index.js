@@ -27,17 +27,12 @@ const IngredientsSelect = ({ onChangeValue }) => {
         try {
             handleClose()
             const result = await axios.post(API_GET_INGREDIENTS, { name })
-            result.data.value = result.data.id;
+            result.data.value = result.data._id;
             result.data.label = result.data.name
-            setOptions(options ? [...options, result.data] : result.data)
-            setSelectedOption(selectedOption ? [...selectedOption, result.data] : result.data)
-        } catch {
-            const usedIngredient = options.filter(option => option.name === name)
-            setOptions(options ? [...options, usedIngredient] : usedIngredient)
-            setSelectedOption(selectedOption ? [...selectedOption, usedIngredient] : usedIngredient)
-        } finally {
-            const ingredients = selectedOption.map(option => option.value)
-            onChangeValue(ingredients)
+            setOptions([...options, result.data])
+            setSelectedOption([...(selectedOption || []), result.data])
+        } catch (e) {
+            console.error(e)
         }
     }
 

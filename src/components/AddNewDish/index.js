@@ -24,6 +24,7 @@ const AddNewDish = () => {
     const handleRecipe = recipe => setRecipe(recipe)
     const handleIngredientChosen = ingredients => setIngredients(ingredients)
     const addDish = async () => {
+        console.log(ingredients)
         const errors = validate()
         if (errors.length !== 0) {
             errors.map(error => {
@@ -40,7 +41,7 @@ const AddNewDish = () => {
                     recipe,
                     ingredients
                 })
-                toast.success(t.AddNewDish, {
+                toast.success(t.addedNewDish, {
                     onClose: () => setAdded(true)
                 })
             } catch (error) {
